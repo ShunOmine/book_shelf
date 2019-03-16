@@ -5,6 +5,7 @@ class Book < ApplicationRecord
                            greater_than: 1}
   validates :publish_date, presence: true
   validates :description, presence: true, length: { maximum: 1000 }
+  belongs_to :category
   has_one_attached :image
   attribute :new_image
 
