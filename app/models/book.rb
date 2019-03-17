@@ -9,6 +9,11 @@ class Book < ApplicationRecord
   has_one_attached :image
   attribute :new_image
 
+  has_many :reviews, dependent: :destroy
+  has_many :users, through: :reviews
+
+  scope :find_newest_books, -> (p) { page(p).per(4).order(publish_date: :desc) }
+
   before_save do
       self.image = new_image if new_image
   end
